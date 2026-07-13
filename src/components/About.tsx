@@ -1,39 +1,9 @@
-import { useEffect, useState } from "react";
 import {
-  Users,
-  LayoutDashboard,
-  FolderKanban,
-  Activity,
+  Code2,
+  Palette,
+  Globe,
+  Rocket,
 } from "lucide-react";
-
-const SystemMetric = () => {
-  const [value, setValue] = useState(0);
-
-  useEffect(() => {
-    let v = 0;
-    const target = 96;
-
-    const interval = setInterval(() => {
-      v += 2;
-
-      if (v >= target) {
-        setValue(target);
-        clearInterval(interval);
-      } else {
-        setValue(v);
-      }
-    }, 30);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="text-center p-4 rounded-lg bg-slate-800/40 border border-slate-700">
-      <div className="text-2xl font-bold text-cyan-400 mb-2">{value}%</div>
-      <div className="text-slate-300 text-sm">Workflow Efficiency</div>
-    </div>
-  );
-};
 
 const About = () => {
   return (
@@ -43,105 +13,106 @@ const About = () => {
         {/* HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            The{" "}
+            About{" "}
             <span className="bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
-              SITECRAFTERS Platform
+              SITECRAFTERS
             </span>
           </h2>
 
           <p className="text-lg text-slate-300 leading-relaxed">
-            A structured web agency workflow that connects client projects,
-            updates, and delivery into one organized digital experience.
+            SITECRAFTERS is a web development and design agency focused on
+            creating modern, high-performance websites that help businesses
+            establish a strong digital presence.
           </p>
         </div>
 
-        {/* METRICS */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
 
-          <SystemMetric />
-
-          <div className="text-center p-4 rounded-lg bg-slate-800/40 border border-slate-700">
-            <div className="text-2xl font-bold text-purple-400 mb-2">Custom</div>
-            <div className="text-slate-300 text-sm">Website Builds</div>
-          </div>
-
-          <div className="text-center p-4 rounded-lg bg-slate-800/40 border border-slate-700">
-            <div className="text-2xl font-bold text-green-400 mb-2">Live</div>
-            <div className="text-slate-300 text-sm">Project Updates</div>
-          </div>
-
-          <div className="text-center p-4 rounded-lg bg-slate-800/40 border border-slate-700">
-            <div className="text-2xl font-bold text-yellow-400 mb-2">Secure</div>
-            <div className="text-slate-300 text-sm">Client Access</div>
-          </div>
-
-        </div>
-
-        {/* MODULES */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* VALUES / SERVICES */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
 
           <div className="flex gap-4 p-6 rounded-lg bg-slate-800/30 border border-slate-700">
-            <LayoutDashboard className="w-10 h-10 text-cyan-400" />
+            <Code2 className="w-10 h-10 text-cyan-400" />
+
             <div>
               <h3 className="text-white font-semibold text-lg">
-                Project Overview
+                Custom Web Development
               </h3>
+
               <p className="text-slate-300 text-sm">
-                A structured view of ongoing work, progress, and development stages.
+                We build custom websites tailored to each business, focusing on
+                performance, scalability, and a smooth user experience.
               </p>
             </div>
           </div>
 
+
           <div className="flex gap-4 p-6 rounded-lg bg-slate-800/30 border border-slate-700">
-            <Users className="w-10 h-10 text-purple-400" />
+            <Palette className="w-10 h-10 text-purple-400" />
+
             <div>
               <h3 className="text-white font-semibold text-lg">
-                Client Workspace
+                Modern Design
               </h3>
+
               <p className="text-slate-300 text-sm">
-                Each client has a dedicated space to follow their project journey.
+                Every website is designed with a focus on clean visuals,
+                usability, and creating a professional brand impression.
               </p>
             </div>
           </div>
 
+
           <div className="flex gap-4 p-6 rounded-lg bg-slate-800/30 border border-slate-700">
-            <FolderKanban className="w-10 h-10 text-green-400" />
+            <Globe className="w-10 h-10 text-green-400" />
+
             <div>
               <h3 className="text-white font-semibold text-lg">
-                Structured Delivery
+                Digital Presence
               </h3>
+
               <p className="text-slate-300 text-sm">
-                Work is organized into clear phases for smooth and predictable delivery.
+                We help businesses move online with websites that represent
+                their brand and connect them with their customers.
               </p>
             </div>
           </div>
 
+
           <div className="flex gap-4 p-6 rounded-lg bg-slate-800/30 border border-slate-700">
-            <Activity className="w-10 h-10 text-yellow-400" />
+            <Rocket className="w-10 h-10 text-yellow-400" />
+
             <div>
               <h3 className="text-white font-semibold text-lg">
-                Live Updates
+                Growth Focused
               </h3>
+
               <p className="text-slate-300 text-sm">
-                Clients stay informed with ongoing progress updates during development.
+                Our websites are built with business growth in mind, helping
+                companies attract customers and improve credibility.
               </p>
             </div>
           </div>
 
         </div>
 
-        {/* VALUE */}
-        <div className="mt-20 text-center max-w-3xl mx-auto">
+
+        {/* STORY */}
+        <div className="max-w-4xl mx-auto text-center">
+
           <h3 className="text-2xl font-semibold text-white mb-4">
-            Why SITECRAFTERS exists
+            Building websites that represent businesses
           </h3>
 
           <p className="text-slate-300 leading-relaxed">
-            Most web projects fail because communication and structure are unclear.
-            SITECRAFTERS solves this by giving every client a clear, organized,
-            and transparent development experience from start to finish.
+            At SITECRAFTERS, we believe a website is more than just an online
+            page. It is a digital representation of a business. Our goal is to
+            create websites that combine thoughtful design, reliable
+            technology, and a clear user experience to help businesses stand
+            out in the digital world.
           </p>
+
         </div>
+
 
       </div>
     </section>

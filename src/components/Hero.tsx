@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowRight, Code, Palette, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+
 import instagramicon from "../assets/socialmedia/instagram.png";
 import gmailicon from "../assets/socialmedia/gmail.png";
 import whatsappicon from "../assets/socialmedia/whatsapp.png";
@@ -25,20 +25,19 @@ const highlights = [
 ];
 
 const Hero = () => {
-  const navigate = useNavigate();
 
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleStartProject = () => {
-    navigate("/auth/signup");
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section
       id="home"
-      className="relative min-h-[100svh] overflow-hidden px-4 py-20 sm:py-24 lg:pt-28 lg:pb-16"
+      className="relative min-h-[100svh] overflow-hidden px-4 py-28 sm:py-28 lg:pt-40 pt-34 lg:pb-16"
     >
       {/* BACKGROUND */}
       <div className="absolute inset-0">
@@ -162,7 +161,7 @@ const Hero = () => {
                 </a>
 
                 <a
-                  href="https://www.instagram.com/sitecraftersz/"
+                  href="https://www.instagram.com/sitecraftersltd/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"

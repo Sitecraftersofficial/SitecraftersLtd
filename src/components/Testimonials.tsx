@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, PhoneCall, Star, Globe, ShieldCheck, X } from "lucide-react";
-import { supabase } from "@/lib/supabase";
 import { v4 as uuidv4 } from "uuid";
+
 
 interface Testimonial {
   id: string;
@@ -72,16 +72,11 @@ const Testimonials = () => {
   }, [isModalOpen]);
 
   const fetchTestimonials = async () => {
-    const { data, error } = await supabase
-      .from("testimonials")
-      .select("*")
-      .order("created_at", { ascending: false });
-
-    if (error) console.error("Error fetching testimonials:", error);
-    else setTestimonialList(data || []);
-
+    // Supabase removed — show empty state by default.
+    setTestimonialList([]);
     setLoading(false);
   };
+
 
   useEffect(() => {
     fetchTestimonials();
@@ -98,20 +93,7 @@ const Testimonials = () => {
   }, [testimonialList]);
 
   const onSubmit = async (formData: FormInputs) => {
-    const newTestimonial: Testimonial = {
-      id: uuidv4(),
-      ...formData,
-      verified: false,
-    };
-
-    const { error } = await supabase.from("testimonials").insert([newTestimonial]);
-
-    if (error) {
-      alert("Failed to submit. Please try again.");
-      console.error(error);
-      return;
-    }
-
+    // Supabase removed — submit only via Formspree.
     try {
       const formspreeData = new FormData();
       Object.entries(formData).forEach(([k, v]) =>
@@ -127,10 +109,11 @@ const Testimonials = () => {
       console.warn("Formspree submission failed:", err);
     }
 
-    alert("Thank you! Your testimonial is pending verification.");
+    alert("Thank you! Your testimonial has been received.");
     reset();
     setIsModalOpen(false);
   };
+
 
   return (
     <section id="testimonials" className="px-4 py-20 bg-slate-800/30 overflow-x-hidden">

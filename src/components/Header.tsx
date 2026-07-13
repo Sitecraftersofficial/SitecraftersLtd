@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import logoSideName from "../assets/SitecraftersLogoSideName1.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,8 +29,12 @@ const Header = () => {
     <header className="fixed top-0 w-full z-50 bg-slate-900/50 backdrop-blur-md border-b border-slate-700/20">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <div className="text-2xl cursor-default hover:scale-110 transition-all ease-in-out duration-500 font-bold bg-gradient-to-r from-cyan-600 to-purple-500 uppercase bg-clip-text text-transparent">
-            SiteCrafters
+          <div className="flex items-center">
+            <img
+              src={logoSideName}
+              alt="Sitecrafters"
+              className="h-14 w-50"
+            />
           </div>
 
           {/* Desktop Menu */}
@@ -55,13 +60,12 @@ const Header = () => {
             <button onClick={() => scrollToSection("contact")} className="text-white hover:text-purple-500 duration-500 hover:border-b-2 border-purple-500 transition-colors">
               Contact
             </button>
-            <Link to="/auth/signup">
-              <Button
-                className="bg-gradient-to-r from-purple-400 via-purple-500 to-cyan-600 duration-500 hover:from-purple-700 hover:to-purple-400 hover:text-black text-white border-0"
-              >
-                Get Started
-              </Button>
-            </Link>
+            <Button
+              className="bg-gradient-to-r from-purple-400 via-purple-500 to-cyan-600 duration-500 hover:from-purple-700 hover:to-purple-400 hover:text-black text-white border-0"
+              onClick={() => scrollToSection("contact")}
+            >
+              Get Started
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -78,8 +82,12 @@ const Header = () => {
           <div className="fixed inset-0 h-screen w-full bg-slate-900 z-50 flex flex-col px-6 py-8 space-y-6">
             {/* Header row inside menu */}
             <div className="flex items-center justify-between">
-              <div className="text-2xl font-bold bg-gradient-to-r from-cyan-600 to-purple-500 uppercase bg-clip-text text-transparent">
-                SiteCrafters
+              <div className="flex items-center">
+                <img
+                  src={logoSideName}
+                  alt="Sitecrafters"
+                  className="h-8 w-auto"
+                />
               </div>
               <button
                 className="text-white"
@@ -114,13 +122,12 @@ const Header = () => {
               <button onClick={() => scrollToSection("contact")} className="text-white text-lg hover:text-purple-500 transition-colors text-left">
                 Contact
               </button>
-              <Link to="/auth/signup">
-                <Button
-                  className="bg-gradient-to-r from-purple-400 via-purple-500 to-cyan-600 text-white text-lg px-6 py-3 rounded-xl"
-                >
-                  Get Started
-                </Button>
-              </Link>
+              <Button
+                className="bg-gradient-to-r from-purple-400 via-purple-500 to-cyan-600 text-white text-lg px-6 py-3 rounded-xl"
+                onClick={() => scrollToSection("contact")}
+              >
+                Get Started
+              </Button>
             </div>
           </div>
         )}

@@ -130,12 +130,17 @@ const Contact: React.FC<ContactProps> = ({ selectedPlan }) => {
                 <Phone className="w-6 h-6 text-purple-400" />
                 <div>
                   <h3 className="text-white font-semibold">Phone</h3>
-                  <a
-                    href="tel:250789599719"
-                    className="text-slate-300 hover:text-cyan-400"
-                  >
-                    (+250) 789-599-719
-                  </a>
+                  <div className="space-y-1">
+                    <a href="tel:250789599719" className="text-slate-300 hover:text-cyan-400 block">
+                      (+250) 789-599-719
+                    </a>
+                    <a href="tel:250738019704" className="text-slate-300 hover:text-cyan-400 block">
+                      (+250) 738-019-704
+                    </a>
+                    <a href="tel:250789569981" className="text-slate-300 hover:text-cyan-400 block">
+                      (+250) 789-569-981
+                    </a>
+                  </div>
                 </div>
               </div>
 

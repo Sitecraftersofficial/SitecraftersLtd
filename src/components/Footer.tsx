@@ -1,13 +1,19 @@
 import instagramicon from "../assets/socialmedia/instagram.png";
 import gmailicon from "../assets/socialmedia/gmail.png";
 import whatsappicon from "../assets/socialmedia/whatsapp.png";
+import logoSideName from "../assets/SitecraftersLogoSideName1.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const EMAIL = "sitecraftersltd@gmail.com";
-  const PHONE = "+250 789 599 719";
-  const PHONE_LINK = "250789599719";
+  const PHONES = [
+    { number: "+250 789 599 719", link: "250789599719" },
+    { number: "+250 738 019 704", link: "250738019704" },
+    { number: "+250 789 569 981", link: "250789569981" }
+  ];
+  const PRIMARY_PHONE = PHONES[0];
+  const INSTAGRAM = "sitecraftersltd";
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -23,9 +29,11 @@ const Footer = () => {
 
           {/* BRAND */}
           <div className="col-span-1 md:col-span-2">
-            <div className="text-4xl font-bold bg-gradient-to-tl from-cyan-600 to-purple-400 bg-clip-text text-transparent mb-4">
-              SiteCrafters
-            </div>
+            <img
+              src={logoSideName}
+              alt="Sitecrafters"
+              className="h-14 w-auto mb-4"
+            />
 
             <p className="text-slate-300 mb-6 max-w-md">
               We design and build custom websites tailored to each client’s goals, with a structured process from start to finish.
@@ -48,7 +56,7 @@ const Footer = () => {
               </a>
 
               <a
-                href="https://www.instagram.com/sitecraftersz/"
+                href={`https://www.instagram.com/${INSTAGRAM}/`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -113,10 +121,10 @@ const Footer = () => {
 
               <li>
                 <a
-                  href={`tel:${PHONE_LINK}`}
+                  href={`tel:${PRIMARY_PHONE.link}`}
                   className="text-slate-300 hover:text-purple-400"
                 >
-                  {PHONE}
+                  {PRIMARY_PHONE.number}
                 </a>
               </li>
 
@@ -129,7 +137,7 @@ const Footer = () => {
         <div className="border-t border-slate-700/20 pt-8 flex flex-col md:flex-row justify-between items-center">
 
           <p className="text-slate-400 text-sm">
-            © {currentYear} SiteCrafters. All rights reserved.
+            © {currentYear} SitecraftersLtd. All rights reserved.
           </p>
 
           <div className="mt-4 md:mt-0 flex flex-col sm:flex-row gap-2 sm:gap-4 items-center">
@@ -141,10 +149,10 @@ const Footer = () => {
             </a>
 
             <a
-              href={`tel:${PHONE_LINK}`}
+              href={`tel:${PRIMARY_PHONE.link}`}
               className="text-slate-400 hover:text-purple-400 text-sm transition"
             >
-              {PHONE}
+              {PRIMARY_PHONE.number}
             </a>
           </div>
         </div>
