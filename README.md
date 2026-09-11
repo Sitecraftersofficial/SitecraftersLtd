@@ -1,8 +1,8 @@
-# 🚀 Welcome to SiteCrafters
+# 🚀 Welcome to SiteCrafters Ltd
 
 <div align="center">
   <img src="./src/assets/siteCraftersLogo.png" width="320px" height="320px" />
-  <img src="./src/assets/portfolio/sitecrafters.png" width="680px" height="680px" />
+  <!-- <img src="./src/assets/portfolio/sitecrafters.png" width="680px" height="680px" /> -->
 </div>
 
 ---
@@ -92,7 +92,7 @@ This project serves as:
 
 ## 📍 Location
 
-Crafted with 💻 + ❤️ in **Kigali, Rwanda**
+Crafted with 💻 + ❤️ in **Kigali, Rwanda** by the <a href"SitecraftersLtd" src"https://sitecraftersltd.com/"> Sitecrafters Ltd </a>
 
 ---
 

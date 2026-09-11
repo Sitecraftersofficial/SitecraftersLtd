@@ -1,139 +1,99 @@
-import { useState, useEffect } from "react";
+// Sticky site header. Navigation items are defined once in `navItems`
+// and reused by the desktop nav, mobile menu and footer.
+import { useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import logoSideName from "../assets/SitecraftersLogoSideName1.png";
+import { Logo } from "./Logo";
 
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+export const navItems = [
+  { label: "Home", to: "/" },
+  { label: "Plans", to: "/plans" },
+  { label: "Our Work", to: "/work" },
+  { label: "Team", to: "/team" },
+  { label: "How It Works", to: "/how-it-works" },
+  { label: "Referral Partner", to: "/referral" },
+  { label: "Contact", to: "/contact" },
+] as const;
 
-  // Prevent scrolling when menu is open
+export function Header() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [isMenuOpen]);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: "smooth" });
-    setIsMenuOpen(false);
-  };
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-slate-900/50 backdrop-blur-md border-b border-slate-700/20">
-      <nav className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <img
-              src={logoSideName}
-              alt="Sitecrafters"
-              className="h-14 w-50"
-            />
-          </div>
+    <header
+      className={`sticky top-0 z-50 bg-background/90 backdrop-blur transition-shadow duration-300 ${
+        scrolled ? "border-b border-border shadow-card" : "border-b border-transparent"
+      }`}
+    >
+      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
+        <Logo />
 
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-8">
-            <button onClick={() => scrollToSection("home")} className="text-white hover:text-purple-500 duration-500 hover:border-b-2 border-purple-500 transition-colors">
-              Home
-            </button>
-            <button onClick={() => scrollToSection("services")} className="text-white hover:text-purple-500 duration-500 hover:border-b-2 border-purple-500 transition-colors">
-              Services
-            </button>
-            <button onClick={() => scrollToSection("about")} className="text-white hover:text-purple-500 duration-500 hover:border-b-2 border-purple-500 transition-colors">
-              About
-            </button>
-            <button onClick={() => scrollToSection("portfolio")} className="text-white hover:text-purple-500 duration-500 hover:border-b-2 border-purple-500 transition-colors">
-              Portfolio
-            </button>
-            {/* <button onClick={() => scrollToSection("pricing")} className="text-white hover:text-purple-500 duration-500 hover:border-b-2 border-purple-500 transition-colors">
-              Pricing
-            </button> */}
-            <button onClick={() => scrollToSection("testimonials")} className="text-white hover:text-purple-500 duration-500 hover:border-b-2 border-purple-500 transition-colors">
-              Testimonials
-            </button>
-            <button onClick={() => scrollToSection("contact")} className="text-white hover:text-purple-500 duration-500 hover:border-b-2 border-purple-500 transition-colors">
-              Contact
-            </button>
-            <Button
-              className="bg-gradient-to-r from-purple-400 via-purple-500 to-cyan-600 duration-500 hover:from-purple-700 hover:to-purple-400 hover:text-black text-white border-0"
-              onClick={() => scrollToSection("contact")}
+        <nav aria-label="Main navigation" className="hidden items-center gap-1 lg:flex">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.to === "/"}
+              className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              Get Started
-            </Button>
-          </div>
+              {({ isActive }) => (
+                <span className={isActive ? "text-foreground" : undefined}>{item.label}</span>
+              )}
+            </NavLink>
+          ))}
+        </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden text-white"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+        <div className="hidden lg:block">
+          <Button asChild size="sm">
+            <Link to="/contact">Get Your Website</Link>
+          </Button>
         </div>
 
-        {/* Mobile Menu Overlay */}
-        {isMenuOpen && (
-          <div className="fixed inset-0 h-screen w-full bg-slate-900 z-50 flex flex-col px-6 py-8 space-y-6">
-            {/* Header row inside menu */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <img
-                  src={logoSideName}
-                  alt="Sitecrafters"
-                  className="h-8 w-auto"
-                />
-              </div>
-              <button
-                className="text-white"
-                onClick={() => setIsMenuOpen(false)}
-                title="Close menu"
-                aria-label="Close menu"
-              >
-                <X size={28} />
-              </button>
-            </div>
+        <button
+          type="button"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground lg:hidden"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
+        </button>
+      </div>
 
-            {/* Menu Links */}
-            <div className="flex flex-col space-y-6 mt-10">
-              <button onClick={() => scrollToSection("home")} className="text-white text-lg hover:text-purple-500 transition-colors text-left">
-                Home
-              </button>
-              <button onClick={() => scrollToSection("services")} className="text-white text-lg hover:text-purple-500 transition-colors text-left">
-                Services
-              </button>
-              <button onClick={() => scrollToSection("about")} className="text-white text-lg hover:text-purple-500 transition-colors text-left">
-                About
-              </button>
-              <button onClick={() => scrollToSection("portfolio")} className="text-white text-lg hover:text-purple-500 transition-colors text-left">
-                Portfolio
-              </button>
-              {/* <button onClick={() => scrollToSection("pricing")} className="text-white text-lg hover:text-purple-500 transition-colors text-left">
-                Pricing
-              </button> */}
-              <button onClick={() => scrollToSection("testimonials")} className="text-white text-lg hover:text-purple-500 transition-colors text-left">
-                Testimonials
-              </button>
-              <button onClick={() => scrollToSection("contact")} className="text-white text-lg hover:text-purple-500 transition-colors text-left">
-                Contact
-              </button>
-              <Button
-                className="bg-gradient-to-r from-purple-400 via-purple-500 to-cyan-600 text-white text-lg px-6 py-3 rounded-xl"
-                onClick={() => scrollToSection("contact")}
-              >
-                Get Started
-              </Button>
-            </div>
-          </div>
-        )}
-      </nav>
+      {open ? (
+        <div id="mobile-menu" className="border-t border-border bg-background lg:hidden">
+          <nav aria-label="Mobile navigation" className="mx-auto max-w-6xl px-5 py-3 sm:px-8">
+            <ul className="flex flex-col">
+              {navItems.map((item) => (
+                <li key={item.to}>
+                  <NavLink
+                    to={item.to}
+                    end={item.to === "/"}
+                    onClick={() => setOpen(false)}
+                    className="block rounded-md px-2 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  >
+                    {({ isActive }) => (
+                      <span className={isActive ? "text-foreground" : undefined}>{item.label}</span>
+                    )}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+            <Button asChild className="mt-3 w-full" onClick={() => setOpen(false)}>
+              <Link to="/contact">Get Your Website</Link>
+            </Button>
+          </nav>
+        </div>
+      ) : null}
     </header>
   );
-};
-
-export default Header;
+}

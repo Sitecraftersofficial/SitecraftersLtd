@@ -1,7 +1,0 @@
-# 1. Force HTTPS and www in a single rule
-http://sitecraftersz.co/*     https://www.sitecraftersz.co/:splat   301!
-http://www.sitecraftersz.co/* https://www.sitecraftersz.co/:splat   301!
-https://sitecraftersz.co/*    https://www.sitecraftersz.co/:splat   301!
-
-# 2. SPA routing - All other routes handled by index.html
-/*    /index.html   200
