@@ -36,8 +36,6 @@ export const plans: Plan[] = [
       "Basic SEO setup",
     ],
     recommended: false,
-    ownership:
-      "Complete 12 months of payments and the website ownership arrangement is fulfilled according to the SiteCrafters agreement.",
     ctaText: "Get Started",
   },
   {
@@ -56,7 +54,7 @@ export const plans: Plan[] = [
       "Maps / location integration",
       "Google presence support",
       "Monthly content updates as per agreement",
-      "Priority email support",
+      "Custom personalized Apps",
     ],
     recommended: true,
     ctaText: "Get Started",
@@ -78,6 +76,7 @@ export const plans: Plan[] = [
       "Performance & analytics setup",
       "Ongoing improvements as per agreement",
       "Direct WhatsApp support line",
+      "Custom personalized Apps",
     ],
     recommended: false,
     ctaText: "Get Started",

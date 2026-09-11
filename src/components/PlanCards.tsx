@@ -9,13 +9,17 @@ import { plans, formatPlanPrice, type Plan } from "@/data/plans";
 import { trackEvent } from "@/config/analytics";
 
 function PlanCard({ plan, index, compact }: { plan: Plan; index: number; compact?: boolean }) {
+  const appFeature = plan.features.find((feature) => feature === "Custom personalized Apps");
+  const displayedFeatures = appFeature
+    ? [appFeature, ...plan.features.filter((feature) => feature !== appFeature)]
+    : plan.features;
+
   return (
     <Reveal
       as="article"
       delay={index * 70}
-      className={`flex h-full flex-col rounded-xl border bg-card p-6 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lift ${
-        plan.recommended ? "border-primary" : "border-border"
-      }`}
+      className={`flex h-full flex-col rounded-xl border bg-card p-6 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lift ${plan.recommended ? "border-primary" : "border-border"
+        }`}
     >
       <div className="flex items-center justify-between gap-3">
         <h3 className="font-display text-lg font-semibold text-foreground">{plan.name}</h3>
@@ -37,12 +41,26 @@ function PlanCard({ plan, index, compact }: { plan: Plan; index: number; compact
 
       {!compact ? (
         <ul className="mt-5 space-y-2.5 text-sm text-foreground">
-          {plan.features.map((feature) => (
-            <li key={feature} className="flex gap-2">
-              <Check size={16} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
-              <span>{feature}</span>
-            </li>
-          ))}
+          {displayedFeatures.map((feature) => {
+            const isAppFeature = feature === appFeature;
+
+            return (
+              <li
+                key={feature}
+                className={`flex gap-2 ${isAppFeature
+                    ? "rounded-lg border border-primary/30 bg-primary-soft p-3 font-semibold text-accent-foreground"
+                    : ""
+                  }`}
+              >
+                <Check
+                  size={16}
+                  className={`mt-0.5 shrink-0 ${isAppFeature ? "text-primary" : "text-primary"}`}
+                  aria-hidden="true"
+                />
+                <span>{feature}</span>
+              </li>
+            );
+          })}
         </ul>
       ) : null}
 
@@ -53,7 +71,7 @@ function PlanCard({ plan, index, compact }: { plan: Plan; index: number; compact
         </p>
       ) : null}
 
-      <div className="mt-6 pt-1 mt-auto">
+      <div className="mt-auto pt-1">
         <Button
           asChild
           className="w-full"
