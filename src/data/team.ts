@@ -16,19 +16,19 @@ export const teamMembers: TeamMember[] = [
     name: "Prince Tumushime Tanga",
     role: "Co-founder — Design",
     photo: "",
-    bio: "Passionate young Tech Entrepreneurs with a strong desire to make a difference in the world through technology.",
+    bio: "Combining creative design with modern web development to create clean, engaging, and effective digital experiences for businesses.",
   },
   {
     name: "Uzair Patel",
     role: "Co-founder — Development",
     photo: "",
-    bio: "Passionate young Tech Entrepreneurs with a strong desire to make a difference in the world through technology.",
+    bio: "Focused on creating modern digital experiences that combine thoughtful design, powerful technology, and real business value.",
   },
   {
     name: "Ellis Delys",
     role: "Co-founder — Client Relations",
     photo: "",
-    bio: "Passionate young Tech Entrepreneurs with a strong desire to make a difference in the world through technology.",
+    bio: "Working closely with clients to understand their needs, communicate ideas clearly, and ensure every project delivers real value.",
   },
 ];
 
