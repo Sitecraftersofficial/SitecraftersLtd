@@ -72,6 +72,7 @@ export const plans: Plan[] = [
       "Everything in Growth",
       "Advanced page structure & internal linking",
       "Booking or enquiry workflows",
+      "Payment System",
       "Extended SEO setup",
       "Performance & analytics setup",
       "Ongoing improvements as per agreement",
